@@ -20,7 +20,11 @@ def passgen():
         password = password + characters[rnum]
     return password
 
+def addentry(entry):
+    passwrite = open('passes.txt', 'a')
+    passwrite.write(entry + '\n')
+
 label = raw_input('Password for: ')
 password = passgen()
 entry = label + ': ' + password
-print(entry)
+addentry(entry)
