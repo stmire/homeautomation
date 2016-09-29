@@ -5,16 +5,14 @@ This script will be used to fetch files from TPB.Once downlaoded, they will be
 opened in Tranmission for content retreival.
 
 TO DO:
-1. Implement magnet parse
-2. Fetch the magent link
-3. Download content via Transmission
+1. Implement moving of transmission downloads into ZFS mountpoint after download
+(mv /var/lib/transmission-daemon/downloads/* /pool/MOUNTPOINT/)
 """
 
 import subprocess
 import sys
 import requests
 import bs4
-import webbrowser
 import re
 
 if len(sys.argv) <= 1:
@@ -37,6 +35,6 @@ for magnet in magnets:
     if(magnetRegex.search(magnet['href'])):
         matches.append(magnet)
 
-#print(matches[0]['href'])
+print(matches[0]['href'])
 
 subprocess.call(['transmission-cli '+matches[0]['href']], shell=True)
