@@ -3,10 +3,6 @@ TPB Fetch
 
 This script will be used to fetch files from TPB.Once downlaoded, they will be
 opened in Tranmission for content retreival.
-
-TO DO:
-1. Implement moving of transmission downloads into ZFS mountpoint after download
-(mv /var/lib/transmission-daemon/downloads/* /pool/MOUNTPOINT/)
 """
 
 import subprocess
@@ -14,6 +10,7 @@ import sys
 import requests
 import bs4
 import re
+import os
 
 if len(sys.argv) <= 1:
     print("Missing search term")
@@ -37,4 +34,4 @@ for magnet in magnets:
 
 print(matches[0]['href'])
 
-subprocess.call(['transmission-cli '+matches[0]['href']], shell=True)
+os.system('transmission-cli '+matches[0]['href'])
