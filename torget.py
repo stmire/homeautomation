@@ -19,7 +19,7 @@ if len(sys.argv) <= 1:
 else:
     searchterm = '%20'.join(sys.argv[1:])
 
-# Link to Pirate BAy search utlity
+# Link to Pirate Bay search utlity
 hostlink = 'http://www.thepiratebay.org/search/'
 
 # Create full search URL
