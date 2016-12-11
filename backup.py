@@ -1,10 +1,10 @@
-'''
+"""
 Directory Backup
 
 Run inside any directory to zip the contents of that current working directory.
 Once zipped, this will move them into a ZFS mountpoint which is mapped to a
 dataset on an external drive.
-'''
+"""
 
 import zipfile
 import shutil

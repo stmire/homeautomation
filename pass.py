@@ -8,7 +8,9 @@ Once created, the password will be stored into a text file
 with a descriptive label
 '''
 
-import os, random, string
+import os
+import random
+import string
 
 def passgen():
     passlength = 16

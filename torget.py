@@ -6,8 +6,8 @@ opened in Tranmission for content retreival.
 """
 
 import subprocess
-import sys
 import requests
+import sys
 import bs4
 import re
 
@@ -17,19 +17,19 @@ if len(sys.argv) <= 1:
     print("Missing search term")
     exit()
 else:
-    searchterm = '%20'.join(sys.argv[1:])
+    search_term = '%20'.join(sys.argv[1:])
 
 # Link to Pirate Bay search utlity
-hostlink = 'http://www.thepiratebay.org/search/'
+url_base = 'http://www.thepiratebay.org/search/'
 
 # Create full search URL
-searchlink = hostlink + searchterm
+search_url = url_base + search_term
 
 # Regex which will be used to only scrape for magent links
 magnetRegex = re.compile(r'^magnet+')
 
 # Scrape the entire search results table for all links/URLs
-request = requests.get(searchlink)
+request = requests.get(search_url)
 parser = bs4.BeautifulSoup(request.text, "lxml")
 magnets = parser.find_all('a', href=True)
 
@@ -44,4 +44,4 @@ print(matches[0]['href'])
 
 # Use the first magnet link with Transmission-CLI to download the contents
 # of the torrented link
-subprocess.call('transmission-cli '+matches[0]['href'])
+subprocess.call('transmission-cli ' + matches[0]['href'], shell=True)
